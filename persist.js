@@ -161,14 +161,14 @@ module.exports = function(RED) {
         };
 
 
-        RED.events.on("nodes-started", node.restore);
+        RED.events.on("flows-started", node.restore);
 
         node.on("input", function(msg) {
             node.restore();
         });
 
         node.on('close', function(removed, done) {
-            RED.events.removeListener("nodes-started", node.restore);
+            RED.events.removeListener("flows-started", node.restore);
             done();
         });
     }
